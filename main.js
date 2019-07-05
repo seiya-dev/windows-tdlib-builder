@@ -152,7 +152,7 @@ async function doBuild(){
         fs.mkdirSync(builddir);
     }
     process.chdir(builddir);
-    let outBuildFolder = `td-${vers.tdlib}-` + (sysbit != `x86` ? `win64-x64` : `win32-x86`)
+    let outBuildFolder = `tdlib-v${vers.tdlib}-` + (sysbit != `x86` ? `win64-x64` : `win32-x86`)
     if(!fs.existsSync(outBuildFolder)){
         fs.mkdirSync(outBuildFolder);
     }
@@ -161,7 +161,7 @@ async function doBuild(){
         fs.mkdirSync(outBuildFolder);
     }
     process.chdir(outBuildFolder);
-    console.log(`Copying dlls to td-${vers.tdlib}-${sysbit}-build folder...`);
+    console.log(`Copying dlls to ${outBuildFolder} folder...`);
     fs.copyFileSync(`${bindir}/vcpkg/installed/${sysbit}-windows/bin/libeay32.dll`, `libeay32.dll`);
     fs.copyFileSync(`${bindir}/vcpkg/installed/${sysbit}-windows/bin/ssleay32.dll`, `ssleay32.dll`);
     fs.copyFileSync(`${bindir}/vcpkg/installed/${sysbit}-windows/bin/zlib1.dll`, `zlib1.dll`);
