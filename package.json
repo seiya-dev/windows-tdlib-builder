@@ -1,6 +1,6 @@
 {
     "name": "windows-tdlib-builder",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Build tdlib in windows systems.",
     "main": "main.js",
     "scripts": {

@@ -1,4 +1,5 @@
 /bin/
 /builds/
+/node_modules/
 !.gitkeep
 package-lock.json

@@ -138,7 +138,6 @@ async function doBuild(){
     shlp.exec(`bootstrap-vcpkg`,`bootstrap-vcpkg`,``);
     shlp.exec(`vcpkg`,`vcpkg`,`upgrade`);
     shlp.exec(`vcpkg`,`vcpkg`,`install openssl:${sysbit}-windows zlib:${sysbit}-windows`);
-    return;
     process.chdir(`..`);
     process.chdir(`td-${vers.tdlib}`);
     if(fs.existsSync(`build`)){
@@ -172,7 +171,9 @@ async function doBuild(){
 function downloadFile(zipUrl, zipFilaname) {
     return new Promise((resolve, reject) => {
         let fls = fs.createWriteStream(zipFilaname);
-        fls.on('close', resolve);
+        fls.on('close', function(){
+            resolve();
+        });
         let progress = createProgressData();
         got.stream(zipUrl).on('response', function(data){
             progress.dataTotal = parseInt(data.headers['content-length'], 10);
@@ -194,10 +195,12 @@ function downloadFile(zipUrl, zipFilaname) {
                 );
             }
         })
-        .on('error', reject)
+        .on('error', function(){
+            fls.end();
+            reject();
+        })
         .on('end', function(){
             fls.end();
-            console.log('\nDownloading complete!');
         });
     })
 }
