@@ -1,0 +1,5 @@
+git: "2.22.0"
+cmake: "3.14.5"
+gperf: "3.0.1"
+tdlib: "1.4.0"
+vcpkg: "e4acc60b3c9acb7fe7a323f146234e3aeab7cab6"
